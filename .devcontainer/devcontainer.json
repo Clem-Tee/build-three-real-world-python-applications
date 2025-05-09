@@ -1,11 +1,14 @@
 {
+  "name": "Python Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/python:1.2.5-3.11-bookworm",
   "extensions": [
     "GitHub.github-vscode-theme",
     "ms-toolsai.jupyter",
     "ms-python.python"
-    // Additional Extensions Here
   ],
-  "onCreateCommand" : "[ -f requirements.txt ] && pip install -r requirements.txt; echo PS1='\"$ \"' >> ~/.bashrc", //Set Terminal Prompt to $
+  /* "onCreateCommand": "[ -f requirements.txt ] && pip install -r requirements.txt" */
+  "postCreateCommand": "python3 -m venv .venv && . .venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt",
+  "settings": {
+    "python.pythonPath": ".venv/bin/python"
+  }
 }
-
-// DevContainer Reference: https://code.visualstudio.com/docs/remote/devcontainerjson-reference
